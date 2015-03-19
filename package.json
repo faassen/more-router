@@ -1,0 +1,29 @@
+{
+    "name": "more-router",
+    "version": "0.1.0",
+    "description": "Router library. Derived from Morepath.",
+    "main": "lib/router.js",
+    "scripts": {
+        "compile": "babel -d lib/ src/",
+        "prepublish": "npm run compile"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/faassen/more-router"
+    },
+    "scripts": {
+        "test": "mocha --compilers js:babel/register --ui tdd"
+    },
+    "keywords": [
+        "router",
+        "routing",
+        "route"
+    ],
+    "author": "Martijn Faassen",
+    "license": "MIT",
+    "devDependencies": {
+        "babel": "^4.7.16",
+        "chai": "^2.1.2",
+        "mocha": "^2.2.1"
+    }
+}
