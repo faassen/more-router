@@ -6,8 +6,10 @@ const PATH_SEPARATOR = /\/+/;
 export default class Router {
     constructor() {
         this.root = new Node();
+        this.registered = new Map();
     }
     addPattern(path, value) {
+        this.registered.set(normalizePath(path), value);
         let node = this.root;
         let knownVariables = new Set();
         for (let segment of parsePath(path)) {
@@ -16,6 +18,9 @@ export default class Router {
             // XXX duplicate variables check
         }
         node.value = value;
+    }
+    getPattern(path) {
+        return this.registered.get(normalizePath(path));
     }
     consume(stack) {
         stack = stack.slice();
@@ -165,14 +170,18 @@ class StepNode extends Node {
 }
 
 function parsePath(path) {
+    return normalizePath(path).split(PATH_SEPARATOR)
+}
+
+function normalizePath(path) {
     if (path.startsWith('/')) {
         path = path.slice(1);
     }
     if (path.endsWith('/')) {
         path = path.slice(0, -1);
     }
-    return path.split(PATH_SEPARATOR)
-}
+    return path;
+};
 
 function generalizeVariables(s) {
     return s.replace(PATH_VARIABLE, '{}');

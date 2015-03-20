@@ -2,7 +2,7 @@
     "name": "more-router",
     "version": "0.1.0",
     "description": "Router library. Derived from Morepath.",
-    "main": "lib/router.js",
+    "main": "lib/main.js",
     "scripts": {
         "compile": "babel -d lib/ src/",
         "prepublish": "npm run compile",

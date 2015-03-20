@@ -19,9 +19,9 @@ Usage
 -----
 
 ```javascript
-  var Router = require('more-router');
+  var moreRouter = require('more-router');
 
-  var router = new Router();
+  var router = new moreRouter.Router();
 
   // second argument can be anything you like; here we use a string
   // for easy demonstration of the API
