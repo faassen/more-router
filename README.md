@@ -1,11 +1,11 @@
-more-route
-==========
+more-router
+===========
 
 Introduction
 ------------
 
-more-route is a routing library. It can run both on the client
-as well as on the server.
+more-router is a routing library. It can run both on the client as
+well as on the server.
 
 Its possibly special qualities include:
 
@@ -14,6 +14,9 @@ Its possibly special qualities include:
   the variable.
 
 * you mix text and variables in a single segment: `/prefix{variable}`
+
+* a publisher abstraction where you can express routes only respond to
+  particular requests, i.e. only GET requests.
 
 Usage
 -----
@@ -63,8 +66,13 @@ Usage
   // }
 ```
 
+Publisher
+---------
+
+To be documented.
+
 Background
 ----------
 
-more-route is derived from the routing code in the Morepath web
+more-router is derived from the routing code in the Morepath web
 framework written in Python.
