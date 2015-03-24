@@ -10,14 +10,16 @@ export default class Publisher {
         let m = this.router.getPattern(path);
         if (m === undefined) {
             m = new NestedMap(this.keySpec);
-            this.router.registerPattern(path, m);
+            this.router.addPattern(path, m);
         }
         m.set(keyObj, value);
     }
-    handle(request) {
+    resolve(path, request) {
         // first get NestedMap based on path
-        let {value, stack, variables} = this.router.resolve(
-            request.urlParts.path);
+        let {value, stack, variables} = this.router.resolve(path);
+        if (value === null) {
+            return null;
+        }
         // determine view name we want and put on request
         let viewName;
         if (stack.length === 0) {
@@ -35,7 +37,7 @@ export default class Publisher {
             if (extract === undefined) {
                 extract = (request) => request[keySpec.name];
             }
-            keyObj[keySpec.name] = keySpec.extract(request);
+            keyObj[keySpec.name] = extract(request);
         }
         // see whether anything matches view predicates
         let result = value.get(keyObj);
